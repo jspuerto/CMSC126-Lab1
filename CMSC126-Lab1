@@ -61,7 +61,6 @@ class PhysicalLayer:
         print("Physical Layer: Receiving raw bit stream and converting back to data")
         return data[4:-1]
 
-# Simulating Data Transmission
 def osi_send(data):
     print("\n--- Sending Data ---")
     app = ApplicationLayer()
@@ -72,7 +71,6 @@ def osi_send(data):
     dll = DataLinkLayer()
     phy = PhysicalLayer()
     
-    # Passing through OSI layers (Top to Bottom)
     data = app.send(data)
     data = pres.send(data)
     data = sess.send(data)
@@ -84,7 +82,6 @@ def osi_send(data):
     print("\nData sent: ", data)
     return data
 
-# Simulating Data Reception
 def osi_receive(data):
     print("\n--- Receiving Data ---")
     app = ApplicationLayer()
@@ -95,7 +92,6 @@ def osi_receive(data):
     dll = DataLinkLayer()
     phy = PhysicalLayer()
     
-    # Passing through OSI layers (Bottom to Top)
     data = phy.receive(data)
     data = dll.receive(data)
     data = net.receive(data)
@@ -104,6 +100,5 @@ def osi_receive(data):
     data = pres.receive(data)
     app.receive(data)
 
-# Testing the OSI Model Simulation
 data_sent = osi_send("Hello, OSI Model!")
 osi_receive(data_sent)
